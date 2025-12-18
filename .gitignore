@@ -1,0 +1,16 @@
+# 1. Dependency Directories (Heavy folders we don't upload)
+node_modules/
+*/node_modules/
+
+# 2. Security / Environment Variables (NEVER upload these)
+.env
+.env.local
+.env.*.local
+
+# 3. Production Builds (React build output)
+client/build/
+
+# 4. OS & Editor System Files
+.DS_Store
+Thumbs.db
+.vscode/
