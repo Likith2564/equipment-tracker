@@ -29,7 +29,6 @@ const App = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    // --- NEW HELPER: Get Today's Date in YYYY-MM-DD format ---
     const getTodayString = () => {
         return new Date().toISOString().split('T')[0];
     };
@@ -37,15 +36,14 @@ const App = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // --- NEW VALIDATION: Check for Future Date ---
+        // Validation: Future Date Check
         const selectedDate = new Date(formData.last_cleaned_date);
         const today = new Date();
-        // Reset time to midnight so we only compare dates, not hours
         today.setHours(0, 0, 0, 0);
 
         if (selectedDate > today) {
             alert("Error: Last Cleaned Date cannot be in the future.");
-            return; // Stop the function here
+            return;
         }
 
         try {
@@ -95,32 +93,39 @@ const App = () => {
                     <input
                         type="text"
                         name="name"
-                        placeholder="Name (e.g. Drill Press)"
+                        placeholder="Name (e.g. Mixing Tank A)"
                         value={formData.name}
                         onChange={handleChange}
                         required
                     />
-                    <input
-                        type="text"
-                        name="type"
-                        placeholder="Type (e.g. Heavy Machinery)"
-                        value={formData.type}
-                        onChange={handleChange}
+
+                    {/* Type Dropdown */}
+                    <select 
+                        name="type" 
+                        value={formData.type} 
+                        onChange={handleChange} 
                         required
-                    />
+                    >
+                        <option value="" disabled>Select Type</option>
+                        <option value="Machine">Machine</option>
+                        <option value="Vessel">Vessel</option>
+                        <option value="Tank">Tank</option>
+                        <option value="Mixer">Mixer</option>
+                    </select>
+
+                    {/* UPDATED: Status Dropdown */}
                     <select name="status" value={formData.status} onChange={handleChange}>
                         <option value="Active">Active</option>
-                        <option value="Maintenance">Maintenance</option>
-                        <option value="Retired">Retired</option>
+                        <option value="Inactive">Inactive</option>
+                        <option value="Under Maintenance">Under Maintenance</option>
                     </select>
                     
-                    {/* UPDATED DATE INPUT */}
                     <input
                         type="date"
                         name="last_cleaned_date"
                         value={formData.last_cleaned_date}
                         onChange={handleChange}
-                        max={getTodayString()} // Blocks future dates in the calendar UI
+                        max={getTodayString()}
                         required
                     />
 
@@ -166,7 +171,10 @@ const App = () => {
                                 <td>{item.name}</td>
                                 <td>{item.type}</td>
                                 <td>
-                                    <span className={`status-badge ${item.status.toLowerCase()}`}>
+                                    {/* LOGIC UPDATE: .replace(' ', '-') turns 
+                                      "Under Maintenance" into "under-maintenance" for CSS 
+                                    */}
+                                    <span className={`status-badge ${item.status.toLowerCase().replace(' ', '-')}`}>
                                         {item.status}
                                     </span>
                                 </td>
