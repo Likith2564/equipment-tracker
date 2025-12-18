@@ -1,4 +1,3 @@
-```
 # Equipment Tracker
 
 A simple full-stack application to track equipment inventory and status. Built with **React**, **Node.js**, and **MySQL**.
@@ -45,5 +44,3 @@ VALUES ('Industrial Mixer', 'Mixer', 'Active', '2025-12-01');
 1. Go to client folder: `cd client`
 2. Install packages: `npm install`
 3. Run app: `npm start`
-
-```
