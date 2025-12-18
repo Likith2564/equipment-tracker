@@ -1,18 +1,27 @@
-# Equipment Tracker
+# 🧰 Equipment Tracker
 
-A simple full-stack application to track equipment inventory and status. Built with **React**, **Node.js**, and **MySQL**.
-
-## 🛠️ Tech Stack
-* **Frontend:** React.js, Axios
-* **Backend:** Node.js, Express
-* **Database:** MySQL
+A simple **full-stack web application** to track equipment inventory and status.  
+Built using **React**, **Node.js**, **Express**, and **MySQL**.
 
 ---
 
-## 🚀 How to Run
+## 🛠️ Tech Stack
 
-### 1. Database Setup
-Run this SQL code in your MySQL Workbench to create the table with the correct status options:
+- **Frontend:** React.js, Axios  
+- **Backend:** Node.js, Express  
+- **Database:** MySQL  
+
+---
+
+## 🚀 Getting Started
+
+Follow the steps below to run the project locally.
+
+---
+
+## 🗄️ Database Setup
+
+Run the following SQL commands in **MySQL Workbench**:
 
 ```sql
 CREATE DATABASE IF NOT EXISTS equipment_db;
@@ -26,20 +35,46 @@ CREATE TABLE IF NOT EXISTS equipment (
     last_cleaned_date DATE NOT NULL
 );
 
--- Optional: Insert dummy data to test
+-- Optional: Insert sample data
 INSERT INTO equipment (name, type, status, last_cleaned_date) 
 VALUES ('Industrial Mixer', 'Mixer', 'Active', '2025-12-01');
 
-# 2. Backend (Server)
 
-1. Go to server folder: `cd server`
-2. Install packages: `npm install`
-3. Setup `.env` file (copy from `.env.example` and add your password).
-4. Run server: `node server.js`
+⚙️ Backend Setup (Server)
+Navigate to the server folder:
 
-# 3. Frontend (Client)
+bash
+Copy code
+cd server
+Install dependencies:
 
-1. Go to client folder: `cd client`
-2. Install packages: `npm install`
-3. Run app: `npm start`
+bash
+Copy code
+npm install
+Create a .env file:
 
+Copy .env.example
+
+Add your database credentials
+
+Start the server:
+
+bash
+Copy code
+node server.js
+💻 Frontend Setup (Client)
+Navigate to the client folder:
+
+bash
+Copy code
+cd client
+Install dependencies:
+
+bash
+Copy code
+npm install
+Start the React app:
+
+bash
+Copy code
+npm start
