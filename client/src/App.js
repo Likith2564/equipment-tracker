@@ -90,45 +90,61 @@ const App = () => {
             <div className="card">
                 <h2>{editId ? 'Update Equipment' : 'Add New Equipment'}</h2>
                 <form onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="Name (e.g. Mixing Tank A)"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                    />
-
-                    {/* Type Dropdown */}
-                    <select 
-                        name="type" 
-                        value={formData.type} 
-                        onChange={handleChange} 
-                        required
-                    >
-                        <option value="" disabled>Select Type</option>
-                        <option value="Machine">Machine</option>
-                        <option value="Vessel">Vessel</option>
-                        <option value="Tank">Tank</option>
-                        <option value="Mixer">Mixer</option>
-                    </select>
-
-                    {/* UPDATED: Status Dropdown */}
-                    <select name="status" value={formData.status} onChange={handleChange}>
-                        <option value="Active">Active</option>
-                        <option value="Inactive">Inactive</option>
-                        <option value="Under Maintenance">Under Maintenance</option>
-                    </select>
                     
-                    <input
-                        type="date"
-                        name="last_cleaned_date"
-                        value={formData.last_cleaned_date}
-                        onChange={handleChange}
-                        max={getTodayString()}
-                        required
-                    />
+                    {/* 1. Name Group */}
+                    <div className="form-group">
+                        <label>Equipment Name</label>
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="e.g. Mixing Tank A"
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
 
+                    {/* 2. Type Group */}
+                    <div className="form-group">
+                        <label>Equipment Type</label>
+                        <select 
+                            name="type" 
+                            value={formData.type} 
+                            onChange={handleChange} 
+                            required
+                        >
+                            <option value="" disabled>Select Type</option>
+                            <option value="Machine">Machine</option>
+                            <option value="Vessel">Vessel</option>
+                            <option value="Tank">Tank</option>
+                            <option value="Mixer">Mixer</option>
+                        </select>
+                    </div>
+
+                    {/* 3. Status Group */}
+                    <div className="form-group">
+                        <label>Current Status</label>
+                        <select name="status" value={formData.status} onChange={handleChange}>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                            <option value="Under Maintenance">Under Maintenance</option>
+                        </select>
+                    </div>
+                    
+                    {/* 4. Date Group */}
+                    <div className="form-group">
+                        <label>Last Cleaned Date</label>
+                        <input
+                            type="date"
+                            name="last_cleaned_date"
+                            value={formData.last_cleaned_date}
+                            onChange={handleChange}
+                            max={getTodayString()}
+                            required
+                        />
+                    </div>
+
+                    {/* Buttons stay the same */}
                     <div className="form-actions">
                         <button 
                             type="submit" 
@@ -171,9 +187,6 @@ const App = () => {
                                 <td>{item.name}</td>
                                 <td>{item.type}</td>
                                 <td>
-                                    {/* LOGIC UPDATE: .replace(' ', '-') turns 
-                                      "Under Maintenance" into "under-maintenance" for CSS 
-                                    */}
                                     <span className={`status-badge ${item.status.toLowerCase().replace(' ', '-')}`}>
                                         {item.status}
                                     </span>
