@@ -7,11 +7,12 @@ A simple full-stack application to track equipment inventory and status. Built w
 * **Backend:** Node.js, Express
 * **Database:** MySQL
 
+---
 
-##  How to Run
+## 🚀 How to Run
 
-# 1. Database Setup
-Run this SQL code in your MySQL Workbench:
+### 1. Database Setup
+Run this SQL code in your MySQL Workbench to create the table with the correct status options:
 
 ```sql
 CREATE DATABASE IF NOT EXISTS equipment_db;
@@ -21,14 +22,13 @@ CREATE TABLE IF NOT EXISTS equipment (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     type VARCHAR(100) NOT NULL,
-    status ENUM('Active', 'Maintenance', 'Retired') DEFAULT 'Active',
+    status ENUM('Active', 'Inactive', 'Under Maintenance') DEFAULT 'Active',
     last_cleaned_date DATE NOT NULL
 );
 
+-- Optional: Insert dummy data to test
 INSERT INTO equipment (name, type, status, last_cleaned_date) 
-VALUES ('Test Machine', 'Heavy', 'Active', '2025-12-01');
-
-```
+VALUES ('Industrial Mixer', 'Mixer', 'Active', '2025-12-01');
 
 # 2. Backend (Server)
 
